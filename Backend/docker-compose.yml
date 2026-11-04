@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    build: ./api-gateway
+    container_name: api-gateway
+    ports:
+      - '3000:3000'
+    depends_on:
+      - product-service
+      - category-service
+    networks:
+      - app-network
+
+  product-service:
+    build: ./products-service
+    container_name: product-service
+    ports:
+      - '4000:4000'
+    networks:
+      - app-network
+    environment:
+      MONGO_DB_URL: mongodb+srv://hasannawaz:HegefR1cbTfMbZcH@cluster-1.oar79x0.mongodb.net/product?retryWrites=true&w=majority
+
+  category-service:
+    build: ./category-service
+    container_name: category-service
+    ports:
+      - '4001:4001'
+    networks:
+      - app-network
+    environment:
+      MONGO_URL: mongodb+srv://hasannawaz:HegefR1cbTfMbZcH@cluster-1.oar79x0.mongodb.net/category?retryWrites=true&w=majority
+
+networks:
+  app-network:
+    driver: bridge
