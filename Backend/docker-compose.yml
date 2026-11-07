@@ -20,7 +20,7 @@ services:
     networks:
       - app-network
     environment:
-      MONGO_DB_URL: mongodb+srv://hasannawaz:HegefR1cbTfMbZcH@cluster-1.oar79x0.mongodb.net/product?retryWrites=true&w=majority
+      MONGO_DB_URL: ${MONGO_PRODUCT_URL}
 
   category-service:
     build: ./category-service
@@ -30,7 +30,7 @@ services:
     networks:
       - app-network
     environment:
-      MONGO_URL: mongodb+srv://hasannawaz:HegefR1cbTfMbZcH@cluster-1.oar79x0.mongodb.net/category?retryWrites=true&w=majority
+      MONGO_URL: ${MONGO_CATEGORY_URL}
 
 networks:
   app-network:
