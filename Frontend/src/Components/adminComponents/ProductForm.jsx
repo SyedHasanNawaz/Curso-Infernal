@@ -66,7 +66,7 @@ const ProductForm = ({ data, isEdit, onClose, submit }) => {
       const uploadData = new FormData();
       selectedImages.forEach((file) => uploadData.append('images', file));
 
-      const res = await fetch('http://localhost:4000/products/upload-images', {
+      const res = await fetch('http://localhost:3000/products/upload-images', {
         method: 'POST',
         body: uploadData,
       });
