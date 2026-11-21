@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   api-gateway:
     build: ./api-gateway
@@ -31,6 +29,32 @@ services:
       - app-network
     environment:
       MONGO_URL: ${MONGO_CATEGORY_URL}
+
+  admin-service:
+    build: ./admin-service
+    container_name: admin-service
+    ports:
+      - '4002:4002'
+    networks:
+      - app-network
+    environment:
+      MONGO_ADMIN_URL: ${MONGO_ADMIN_URL}
+      JWT_SECRET: ${JWT_SECRET}
+
+  checkout-service:
+    build: ./checkout-service
+    container_name: checkout-service
+    ports:
+      - '4004:4004'
+    networks:
+      - app-network
+    environment:
+      MONGO_ORDER_URL: ${MONGO_ORDER_URL}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+      MAIL_HOST: ${MAIL_HOST}
+      MAIL_PORT: ${MAIL_PORT}
+      MAIL_USER: ${MAIL_USER}
+      MAIL_PASS: ${MAIL_PASS}
 
 networks:
   app-network:
