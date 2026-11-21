@@ -13,7 +13,7 @@ const productProxy = createProxyMiddleware({
 router.use((req, res, next) => {
   const mutating = ['POST', 'PUT', 'PATCH', 'DELETE'].includes(req.method);
   if (mutating) {
-    return requireAuthorization(req, res, requireAuthentication(req, res, next));
+    return requireAuthorization(req, res, requireAuthentication);
   }
   return next();
 });

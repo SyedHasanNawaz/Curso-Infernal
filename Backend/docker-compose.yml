@@ -9,6 +9,8 @@ services:
       - category-service
     networks:
       - app-network
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
 
   product-service:
     build: ./products-service
