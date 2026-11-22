@@ -35,7 +35,7 @@ exports.placeOrder = async (req, res) => {
 exports.createCheckoutSession = async (req, res) => {
   const { orderItems } = req.body;
 
-  if (!orderItems || !Array.isArray(orderItems)) {
+  if (!orderItems || !Array.isArray(orderItems) || orderItems.length === 0) {
     return res.status(400).json({ message: 'Missing or invalid orderItems' });
   }
 
